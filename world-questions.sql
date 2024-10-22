@@ -1,0 +1,19 @@
+USE WORLD;
+SHOW TABLES;
+
+#Q1
+SELECT COUNT(ID)
+FROM CITY
+WHERE CountryCode = "USA";
+
+#Q2
+SELECT Population, LifeExpectancy
+FROM COUNTRY
+WHERE Name = "Argentina";
+
+#Q3
+SELECT *
+FROM COUNTRY
+WHERE LifeExpectancy IS NOT NULL
+ORDER BY LifeExpectancy DESC
+LIMIT 1;
