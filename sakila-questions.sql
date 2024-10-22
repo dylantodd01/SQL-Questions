@@ -108,15 +108,54 @@ FROM FILM
 WHERE description LIKE "%robot%";
 
 #Q18
+SELECT COUNT(film_id) 
+FROM FILM
+WHERE release_year = 2010;
 
+#Q19
+SELECT title, name
+FROM film_category
+INNER JOIN film on film_category.film_id = film.film_id
+INNER JOIN category on film_category.category_id = category.category_id
+WHERE category.name = "Horror";
 
+#Q20
+SELECT first_name, last_name
+FROM STAFF
+WHERE staff_id = 2;
 
+#Q21
+SELECT title
+FROM FILM
+WHERE film_id IN (SELECT film_id 
+	FROM FILM_ACTOR
+	WHERE actor_id = (SELECT actor_id 
+		FROM ACTOR 
+		WHERE first_name = "Fred" AND last_name = "Costner"));
 
+#Q22
+SELECT COUNT(DISTINCT(country))
+FROM COUNTRY;
 
+#Q23
+SELECT name
+FROM LANGUAGE
+ORDER BY name DESC;
 
+#24
+SELECT first_name, last_name
+FROM ACTOR
+WHERE last_name LIKE "%son"
+ORDER BY first_name ASC;
 
-
-
+#25
+SELECT *
+FROM CATEGORY
+WHERE category_id = (SELECT category_id
+	FROM FILM_CATEGORY
+	GROUP BY category_id
+	ORDER BY COUNT(category_id) DESC
+	LIMIT 1);
 
 
 
